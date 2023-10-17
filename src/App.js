@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useReducer} from "react";
+import Navbar from "./Components/Navbar";
+import TableHead from "./Components/Table";
+import DRRContext from "./Context/DRRContext";
+import DRRReducer from "./Context/reducer"
+import TableBody from "./Components/TableBody";
 
-function App() {
+function App() { 
+  const[drr, dispatch] = useReducer(DRRReducer, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <DRRContext.Provider value={{drr, dispatch}}>
+      <Navbar/>
+      <TableHead/>
+      <TableBody/>
+    </DRRContext.Provider>
+    
+    </>
   );
 }
 
